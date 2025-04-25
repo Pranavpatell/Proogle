@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <link rel="shortcut icon" href="Proico.ico" type="image/x-icon">
+  <link rel="shortcut icon" href="Pr.ico" type="image/x-icon">
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Proogle</title>
@@ -13,7 +13,7 @@
     }
 
     body {
-      background: url(lop.jpg); 
+      background: url(lop.jpg);
       background-size: cover;
       font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
     }
@@ -31,25 +31,39 @@
 
     .search-box {
       display: flex;
-      /* background: rgba(255,255,255,0.5); */
       justify-content: center;
       align-items: center;
-      /* margin-top: 20vh; */
       gap: 1rem;
     }
+
     input {
-  width: 4rem;
-  height: 4rem;
-  border-radius: 3rem;
-  background-color: transparent;
-  border: none;
-  padding: 0 2rem;
-  color: white;
-  font-size: 1.5rem;
-  border: white solid 0.5px;
-  outline: none;
-  transition: width 1s ease; /* Keep it chill */
-}
+      width: 4rem;
+      height: 4rem;
+      border-radius: 3rem;
+      background-color: rgba(255,255,255,0.5);
+      border: white solid 0.5px;
+      padding: 0 2rem;
+      color: white;
+      font-size: 1.5rem;
+      outline: none;
+      backdrop-filter: blur(5px);
+      transition: width 1s ease;
+    }
+
+    input:hover {
+      width: 40rem;
+    }
+
+    .search-bar {
+      height: 8rem;
+      padding: 2rem;
+      width: 50rem;
+      gap: 1rem;
+      backdrop-filter: blur(4px);
+      border-radius: 5px;
+      display: flex;
+    }
+
     button {
       height: 4rem;
       width: 8rem;
@@ -59,92 +73,110 @@
       font-size: 1.2rem;
       cursor: pointer;
       backdrop-filter: blur(3px);
-      /* box-shadow: 0 0 5px rgba(255,255,255,0.2); */
       color: black;
-      transition: width 0.3s ease-in-out;
+      transition: background-color 0.3s ease-in-out;
     }
-    input:hover{
 
-        width: 40rem;
-    }
-    .search-bar{
-        height: 8rem;
-        padding: 2rem;
-        background-color: rgba(255,255,255,0.2);
-        width: 50rem;
-        gap: 1rem;
-        backdrop-filter: blur(4px);
-        border-radius: 5px;
-        display: flex;
-    }
     button:hover {
       background-color: rgba(255, 255, 255, 0.5);
     }
-    .img-box{
-        /* height: 40vh; */
-        display: flex;
-        justify-content: center;
-        align-items: center;
+
+    .img-box {
+      display: flex;
+      justify-content: center;
+      align-items: center;
     }
-    .log{
-        height: 25vh;
+
+    .log {
+      height: 15vh;
+    }
+    @keyframes glitch {
+  0% { transform: translate(0); }
+  20% { transform: translate(-2px, 2px); }
+  40% { transform: translate(-2px, -2px); }
+  60% { transform: translate(2px, 2px); }
+  80% { transform: translate(2px, -2px); }
+  100% { transform: translate(0); }
+}
+
+.glitch-effect {
+  animation: glitch 0.3s linear 2;
+}
+
+    img[onclick] {
+      cursor: pointer;
+      height: 4rem;
     }
   </style>
 </head>
 <body>
-    <br>
-    <br>
-    <br>
 
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    
-    <br>
-    <br>
-    <br>
-    <div class="img-box">
-        
-        <!-- <b</ber> -->
-    <img src="Proogle.png" class="log" alt="" srcset="">
+  <br><br><br><br><br><br><br><br><br><br><br><br><br>
 
-    </div>
+  <div class="img-box">
+    <img src="Proogle.png" class="log" alt="Proogle Logo">
+  </div>
+
   <div class="search-box">
-
-
     <div class="search-bar">
-    
-   <input type="text" id="Search" placeholder="Search anything...">
-    <img src="magnifying-glass.png" onclick="Search()">
-    <!-- <button onclick="Search()" id="btn">Search</button> -->
-    </div>
+      <input type="text" id="Search" placeholder="Search anything...">
+      <img src="magnifying-glass.png" onclick="Search()" alt="Search">
     </div>
   </div>
+
+  <script>
+      const logo = document.getElementsByClassName("log")[0];  // Select the first element
+logo.classList.add("glitch-effect");
+
+// Remove the class after animation ends so it can be triggered again
+setTimeout(() => {
+  logo.classList.remove("glitch-effect");
+}, 600);
+
+
+    const dataset = {
+      "Youtube" :  "https://www.Yotube.com//",
+      "Github" :  "https://www.Github.com//",
+      "Replit" :  "https://www.Replit.com//",
+      "PW": "https://www.PhysicsWallah.com//"
+
+    }
+    function Search() {
+      const search = document.getElementById("Search").value.trim();
+
+      if (!search) {
+        alert("Bruh type something mi amigo ");
+        return;
+      }
+
+      if (search.toLowerCase() === "pranavi") {
+        window.location.href = "https://www.instagram.com/elsenorenterprises/";
+      } else if (search.toLowerCase() === "youtube") {
+        window.location.href = "https://www.youtube.com/";
+      } else if (search.endsWith(".com")) {
+        window.location.href = `https://www.google.com/search?q=${encodeURIComponent(search)}`;
+      } else {
+        const query = encodeURIComponent(search);
+        window.location.href = `https://www.google.com/search?q=${query}`;
+      }
+      for (let key in dataset) {
+      if (key.toLowerCase() === lowerSearch) {
+      window.location.href = dataset[key];
+      return;
+    }
+  }
+    }
+
+    document.getElementById("Search").addEventListener("keypress", function(event) {
+      if (event.key === "Enter") {
+        event.preventDefault();
+        Search();
+      }
+    });
+
+
+    </script>
+
 </body>
 </html>
-<script>
-    function Search(params) {
-        const search =  document.getElementById("Search").value.trim();
-        if(search){
-            const query =  encodeURIComponent(search);
-            window.location.href = `https://www.google.com/search?q=${query}`;
-            } else {
-            alert("Bruh type something mi amigo ");
-        }
-        if (search == "PranavI") {
-            window.location.href = `https://www.instagram.com/elsenorenterprises/`;
-            
-        }
-        
-    }
-    document.getElementById("Search").addEventListener("keypress", function(event) {
-  if (event.key === "Enter") {
-    event.preventDefault(); // optional, prevents form from refreshing
-    Search() // replace with your actual search function
-  }
-});
-
-</script>
+    
